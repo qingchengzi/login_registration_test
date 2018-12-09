@@ -1,0 +1,54 @@
+{% extends 'login/base.html' %}  <!--继承base.html中所有内容-->
+{% load staticfiles %}  <!--加载自定义的css静态文件-->
+{% block title %}注册{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+    <div class="col-md-offset-4 col-md-4">  <!--便宜4个空格，然后自己占4个居中-->
+        <form class="from-register" action="/register/" method="post">
+
+            {% if message %}
+                <div class="alert alert-warning">{{ message }}</div>
+            {% endif %}
+
+            <h2 class="text-center">欢迎注册</h2>
+
+            <div class="form-group">
+                {{ register_form.username.label_tag }} <!--标签-->
+                {{ register_form.username }}  <!--用户名-->
+            </div>
+
+            <div class="form-group">
+                {{ register_form.password1.label_tag }}
+                {{ register_form.password1 }}
+            </div>
+
+             <div class="form-group">
+                {{ register_form.password2.label_tag }}
+                {{ register_form.password2 }}
+            </div>
+
+            <div class="form-group">
+                {{ register_form.email.label_tag }}
+                {{ register_form.email }}
+            </div>
+
+             <div class="form-group">
+                {{ register_form.sex.label_tag }}
+                {{ register_form.sex }}
+            </div>
+
+            <div class="form-group">  <!--图片验证码-->
+                {{ register_form.captcha.errors }}
+                {{ register_form.captcha.label_tag }}
+                {{ register_form.captcha }}
+            </div>
+            <button type="reset" class="btn btn-default pull-left">重置</button>
+            <button type="submit" class="btn btn-primary col-lg-pull-12">提交</button>
+            {% csrf_token %}
+        </form>
+    </div>
+    </div>
+
+{% endblock %}

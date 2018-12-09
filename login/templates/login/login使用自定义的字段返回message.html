@@ -1,0 +1,33 @@
+{% extends 'login/base.html' %}  <!--继承base.html中所有内容-->
+{% load staticfiles %}  <!--加载自定义的css静态文件-->
+{% block title %}登录{% endblock %}
+{% block css %}
+   <link href="{% static 'login/css/login.css' %}" rel="stylesheet" />   <!--导入自定义css的位置-->
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+    <div class="col-md-offset-4 col-md-4">  <!--居中-->
+        <form class="from-login" action="/login/" method="post">
+            {% if message %}
+                <div class="alert alert-warning">{{ message }}</div>
+
+            {% endif %}
+            <h2 class="text-center">欢迎登录</h2>
+            <div class="form-group">
+                <label for="id_username">用户名：</label>
+                <input type="text" class="form-control" id="id_username" placeholder="用户名" name="username" autofocus required />
+            </div>
+            <div class="form-group">
+                <label for="id_password">密码：</label>
+                <input type="password" class="form-control" id="id_password" placeholder="密码" name="password" required/>
+            </div>
+{#            <button type="reset" class="btn btn-default pull-left">重置</button>#}
+            <button type="submit" class="btn btn-primary col-lg-pull-12">提交</button>
+
+            {% csrf_token %}
+        </form>
+    </div>
+    </div>
+
+{% endblock %}
